@@ -166,6 +166,17 @@
                 "@type": "Role",
                 "memberOf": {
                   "@type": "Organization",
+                  "@id": "https://example.com/org/pmr",
+                  "name": "PMR"
+                },
+                "roleName": "Anggota",
+                "startDate": "2016",
+                "endDate": "2017"
+              },
+              {
+                "@type": "Role",
+                "memberOf": {
+                  "@type": "Organization",
                   "@id": "https://example.com/org/osis",
                   "name": "OSIS"
                 },
@@ -202,6 +213,7 @@
             "name": "Sistem Informasi Perpustakaan",
             "description": "Aplikasi web untuk manajemen data buku, anggota, dan peminjaman perpustakaan berbasis database relasional.",
             "applicationCategory": "WebApplication",
+            "programmingLanguage": ["PHP", "MySQL", "HTML", "CSS"],
             "dateCreated": "2024",
             "author": {
               "@id": "https://example.com/upi-wiraningsih"
@@ -213,6 +225,7 @@
             "name": "Sistem Rekomendasi Lagu",
             "description": "Sistem rekomendasi lagu berbasis Semantic Web menggunakan ontologi RDF/OWL dan query SPARQL untuk merepresentasikan dan mengambil data musik secara terstruktur.",
             "applicationCategory": "WebApplication",
+            "programmingLanguage": ["PHP", "RDF", "OWL", "SPARQL"],
             "dateCreated": "2026",
             "author": {
               "@id": "https://example.com/upi-wiraningsih"
@@ -223,6 +236,8 @@
             "@id": "https://example.com/project/profil-semantik",
             "name": "Website Profil Mahasiswa Semantik",
             "description": "Website profil pribadi mahasiswa dengan implementasi Semantic Web menggunakan JSON-LD dan Schema.org untuk merepresentasikan data diri secara terstruktur dan dapat dibaca mesin.",
+            "url": "https://profil-upi-semantik.vercel.app",
+            "programmingLanguage": ["HTML", "CSS", "JavaScript", "JSON-LD"],
             "dateCreated": "2026",
             "author": {
               "@id": "https://example.com/upi-wiraningsih"
@@ -1120,6 +1135,109 @@
         opacity: 0.7;
       }
 
+      /* ─── Projects ─── */
+      #projects .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.4rem;
+      }
+
+      .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        transition: all var(--transition);
+        opacity: 0;
+        transform: translateY(16px);
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), var(--amber));
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+      .project-card:hover::before { opacity: 1; }
+      .project-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .project-card:hover {
+        border-color: rgba(79, 156, 249, 0.45);
+        transform: translateY(-5px);
+        box-shadow: 0 14px 36px rgba(79, 156, 249, 0.13);
+      }
+
+      .project-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+      .project-icon {
+        font-size: 1.8rem;
+        flex-shrink: 0;
+      }
+      .project-year {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--blue);
+        background: rgba(79, 156, 249, 0.1);
+        border: 1px solid rgba(79, 156, 249, 0.25);
+        border-radius: 20px;
+        padding: 0.2rem 0.7rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .project-name {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--white);
+        line-height: 1.35;
+      }
+      .project-desc {
+        font-size: 0.87rem;
+        color: var(--muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.2rem;
+      }
+      .project-tag {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--amber);
+        background: rgba(255, 165, 0, 0.08);
+        border: 1px solid rgba(255, 165, 0, 0.2);
+        border-radius: 4px;
+        padding: 0.15rem 0.55rem;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        color: var(--blue);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        margin-top: auto;
+        transition: opacity var(--transition);
+      }
+      .project-link:hover { opacity: 0.75; }
+
       /* ─── Organizations ─── */
       #organizations .org-grid {
         display: grid;
@@ -1577,6 +1695,7 @@
         <li><a href="#education">Pendidikan</a></li>
         <li><a href="#skills">Skill</a></li>
         <li><a href="#organizations">Organisasi</a></li>
+        <li><a href="#projects">Proyek</a></li>
         <li><a href="#semantic">Semantic Web</a></li>
         <li><a href="#contact">Kontak</a></li>
       </ul>
@@ -1612,6 +1731,7 @@
         <li><a href="#education" class="mobile-link">Pendidikan</a></li>
         <li><a href="#skills" class="mobile-link">Skill</a></li>
         <li><a href="#organizations" class="mobile-link">Organisasi</a></li>
+        <li><a href="#projects" class="mobile-link">Proyek</a></li>
         <li><a href="#semantic" class="mobile-link">Semantic Web</a></li>
         <li><a href="#contact" class="mobile-link">Kontak</a></li>
       </ul>
@@ -1932,6 +2052,20 @@
           >
             <span class="org-num" aria-hidden="true">01</span>
             <div class="org-info">
+              <h3 class="org-name" itemprop="name">PMR</h3>
+              <p class="org-period">2016 – 2017</p>
+              <p class="org-role">Palang Merah Remaja</p>
+              <span class="org-badge">Anggota</span>
+            </div>
+          </article>
+          <article
+            class="org-card"
+            role="listitem"
+            itemscope
+            itemtype="https://schema.org/Organization"
+          >
+            <span class="org-num" aria-hidden="true">02</span>
+            <div class="org-info">
               <h3 class="org-name" itemprop="name">OSIS</h3>
               <p class="org-period">2019 – 2020</p>
               <p class="org-role">Organisasi Siswa Intra Sekolah</p>
@@ -1944,7 +2078,7 @@
             itemscope
             itemtype="https://schema.org/Organization"
           >
-            <span class="org-num" aria-hidden="true">02</span>
+            <span class="org-num" aria-hidden="true">03</span>
             <div class="org-info">
               <h3 class="org-name" itemprop="name">Pramuka</h3>
               <p class="org-period">2018 – 2019</p>
@@ -1958,7 +2092,7 @@
             itemscope
             itemtype="https://schema.org/Organization"
           >
-            <span class="org-num" aria-hidden="true">03</span>
+            <span class="org-num" aria-hidden="true">04</span>
             <div class="org-info">
               <h3 class="org-name" itemprop="name">HMPS Ilmu Komputer</h3>
               <p class="org-period">2026 – Sekarang</p>
@@ -1970,11 +2104,116 @@
       </div>
     </section>
 
+    <!-- ═══ PROYEK ═══ -->
+    <div class="section-divider"></div>
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-inner">
+        <p class="section-label">05 · Portofolio Proyek</p>
+        <h2 class="section-title" id="projects-title">Proyek yang Dibuat</h2>
+        <div class="section-line"></div>
+
+        <div class="projects-grid" role="list">
+
+          <!-- Proyek 1: Sistem Rekomendasi Lagu -->
+          <article
+            class="project-card"
+            role="listitem"
+            itemscope
+            itemtype="https://schema.org/SoftwareApplication"
+          >
+            <meta itemprop="applicationCategory" content="WebApplication" />
+            <meta itemprop="operatingSystem" content="Web Browser" />
+            <div class="project-header">
+              <span class="project-icon" aria-hidden="true">🎵</span>
+              <span class="project-year">2026</span>
+            </div>
+            <h3 class="project-name" itemprop="name">Sistem Rekomendasi Lagu</h3>
+            <p class="project-desc" itemprop="description">
+              Aplikasi web rekomendasi lagu berbasis Semantic Web menggunakan ontologi
+              RDF/OWL dan query SPARQL untuk merepresentasikan dan mengambil data musik
+              secara terstruktur dan dapat dibaca mesin.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag" itemprop="programmingLanguage">PHP</span>
+              <span class="project-tag" itemprop="programmingLanguage">RDF/OWL</span>
+              <span class="project-tag" itemprop="programmingLanguage">SPARQL</span>
+              <span class="project-tag">Tailwind CSS</span>
+              <span class="project-tag">Semantic Web</span>
+            </div>
+          </article>
+
+          <!-- Proyek 2: Website Profil Semantik -->
+          <article
+            class="project-card"
+            role="listitem"
+            itemscope
+            itemtype="https://schema.org/SoftwareApplication"
+          >
+            <meta itemprop="applicationCategory" content="WebApplication" />
+            <meta itemprop="operatingSystem" content="Web Browser" />
+            <div class="project-header">
+              <span class="project-icon" aria-hidden="true">🌐</span>
+              <span class="project-year">2026</span>
+            </div>
+            <h3 class="project-name" itemprop="name">Website Profil Mahasiswa Semantik</h3>
+            <p class="project-desc" itemprop="description">
+              Website profil pribadi dengan implementasi Semantic Web menggunakan JSON-LD
+              dan Schema.org, tervalidasi oleh Google Rich Results Test dengan 16 item
+              schema dan zero error.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag" itemprop="programmingLanguage">HTML</span>
+              <span class="project-tag" itemprop="programmingLanguage">CSS</span>
+              <span class="project-tag" itemprop="programmingLanguage">JavaScript</span>
+              <span class="project-tag" itemprop="programmingLanguage">JSON-LD</span>
+              <span class="project-tag">Schema.org</span>
+            </div>
+            <a
+              href="https://profil-upi-semantik.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+              itemprop="url"
+            >
+              🔗 profil-upi-semantik.vercel.app
+            </a>
+          </article>
+
+          <!-- Proyek 3: Sistem Informasi Perpustakaan -->
+          <article
+            class="project-card"
+            role="listitem"
+            itemscope
+            itemtype="https://schema.org/SoftwareApplication"
+          >
+            <meta itemprop="applicationCategory" content="WebApplication" />
+            <meta itemprop="operatingSystem" content="Web Browser" />
+            <div class="project-header">
+              <span class="project-icon" aria-hidden="true">📚</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="project-name" itemprop="name">Sistem Informasi Perpustakaan</h3>
+            <p class="project-desc" itemprop="description">
+              Aplikasi web manajemen perpustakaan untuk pengelolaan data buku, anggota,
+              dan transaksi peminjaman berbasis database relasional.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag" itemprop="programmingLanguage">PHP</span>
+              <span class="project-tag" itemprop="programmingLanguage">MySQL</span>
+              <span class="project-tag" itemprop="programmingLanguage">HTML</span>
+              <span class="project-tag" itemprop="programmingLanguage">CSS</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ SEMANTIC WEB ═══ -->
     <div class="section-divider"></div>
     <section id="semantic" aria-labelledby="sem-title">
       <div class="section-inner">
-        <p class="section-label">05 · Implementasi Semantic Web</p>
+        <p class="section-label">06 · Implementasi Semantic Web</p>
         <h2 class="section-title" id="sem-title">Representasi Pengetahuan</h2>
         <div class="section-line"></div>
 
@@ -2099,6 +2338,21 @@
                 <td class="spo-object">Python</td>
                 <td>
                   <code style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--amber);">Person → DefinedTerm</code>
+                </td>
+              </tr>
+              <tr>
+                <td class="spo-subject">Upi Wiraningsih</td>
+                <td class="spo-predicate">schema:memberOf</td>
+                <td class="spo-object">PMR</td>
+                <td>
+                  <code
+                    style="
+                      font-family: var(--font-mono);
+                      font-size: 0.75rem;
+                      color: var(--amber);
+                    "
+                    >Person → Organization</code
+                  >
                 </td>
               </tr>
               <tr>
@@ -2344,6 +2598,10 @@
             <text x="275" y="195" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#4F9CF9" transform="rotate(-30,275,195)">knowsAbout</text>
 
             <!-- ── BOTTOM: Organization cluster ── -->
+            <rect x="145" y="400" width="110" height="36" rx="7" fill="none" stroke="#94B8D4" stroke-width="1.2" opacity="0.8"/>
+            <text x="200" y="418" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9.5" fill="#CCD6F6">PMR</text>
+            <text x="200" y="430" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94B8D4">Organization</text>
+
             <rect x="270" y="400" width="110" height="36" rx="7" fill="none" stroke="#94B8D4" stroke-width="1.2" opacity="0.8"/>
             <text x="325" y="418" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9.5" fill="#CCD6F6">OSIS</text>
             <text x="325" y="430" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94B8D4">Organization</text>
@@ -2357,10 +2615,11 @@
             <text x="592" y="430" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94B8D4">Organization</text>
 
             <!-- Arrows memberOf -->
+            <line x1="450" y1="280" x2="200" y2="398" stroke="#94B8D4" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.65"/>
             <line x1="470" y1="280" x2="325" y2="398" stroke="#94B8D4" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.65"/>
             <line x1="490" y1="280" x2="450" y2="398" stroke="#94B8D4" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.65"/>
             <line x1="510" y1="280" x2="570" y2="398" stroke="#94B8D4" stroke-width="1.2" marker-end="url(#arrow)" opacity="0.65"/>
-            <text x="470" y="360" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#94B8D4">memberOf</text>
+            <text x="420" y="360" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#94B8D4">memberOf</text>
           </svg>
         </div>
 
@@ -2398,6 +2657,7 @@
       { <span class="json-type">"@type"</span>: <span class="json-string">"Role"</span>, <span class="json-key">"alumniOf"</span>: { <span class="json-type">"@type"</span>: <span class="json-string">"CollegeOrUniversity"</span>, <span class="json-key">"name"</span>: <span class="json-string">"Universitas Halu Oleo"</span> }, <span class="json-key">"startDate"</span>: <span class="json-string">"2023"</span> }
     ],
     <span class="json-key">"memberOf"</span>: [
+      { <span class="json-type">"@type"</span>: <span class="json-string">"Role"</span>, <span class="json-key">"memberOf"</span>: { <span class="json-type">"@type"</span>: <span class="json-string">"Organization"</span>, <span class="json-key">"name"</span>: <span class="json-string">"PMR"</span> }, <span class="json-key">"roleName"</span>: <span class="json-string">"Anggota"</span>, <span class="json-key">"startDate"</span>: <span class="json-string">"2016"</span>, <span class="json-key">"endDate"</span>: <span class="json-string">"2017"</span> },
       { <span class="json-type">"@type"</span>: <span class="json-string">"Role"</span>, <span class="json-key">"memberOf"</span>: { <span class="json-type">"@type"</span>: <span class="json-string">"Organization"</span>, <span class="json-key">"name"</span>: <span class="json-string">"OSIS"</span> }, <span class="json-key">"roleName"</span>: <span class="json-string">"Anggota"</span>, <span class="json-key">"startDate"</span>: <span class="json-string">"2019"</span>, <span class="json-key">"endDate"</span>: <span class="json-string">"2020"</span> },
       { <span class="json-type">"@type"</span>: <span class="json-string">"Role"</span>, <span class="json-key">"memberOf"</span>: { <span class="json-type">"@type"</span>: <span class="json-string">"Organization"</span>, <span class="json-key">"name"</span>: <span class="json-string">"Pramuka"</span> }, <span class="json-key">"roleName"</span>: <span class="json-string">"Anggota"</span>, <span class="json-key">"startDate"</span>: <span class="json-string">"2018"</span>, <span class="json-key">"endDate"</span>: <span class="json-string">"2019"</span> },
       { <span class="json-type">"@type"</span>: <span class="json-string">"Role"</span>, <span class="json-key">"memberOf"</span>: { <span class="json-type">"@type"</span>: <span class="json-string">"Organization"</span>, <span class="json-key">"name"</span>: <span class="json-string">"HMPS Ilmu Komputer"</span> }, <span class="json-key">"roleName"</span>: <span class="json-string">"Anggota"</span>, <span class="json-key">"startDate"</span>: <span class="json-string">"2026"</span> }
@@ -2462,7 +2722,7 @@
     <div class="section-divider"></div>
     <section id="contact" aria-labelledby="contact-title">
       <div class="section-inner">
-        <p class="section-label">06 · Kontak</p>
+        <p class="section-label">07 · Kontak</p>
         <h2 class="section-title" id="contact-title">Hubungi Saya</h2>
         <div class="section-line"></div>
 
@@ -2667,6 +2927,18 @@
       document
         .querySelectorAll(".org-card")
         .forEach((el) => orgObs.observe(el));
+
+      const projectObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add("visible"), i * 120);
+            projectObs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      document
+        .querySelectorAll(".project-card")
+        .forEach((el) => projectObs.observe(el));
 
       // ── Navbar Active Highlight (scroll-based, akurat) ──
       const sections = document.querySelectorAll("section[id]");
